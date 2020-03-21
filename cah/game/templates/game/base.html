@@ -15,7 +15,7 @@
 
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
-    {% block css %}
+    
     
     <!-- Latest compiled and minified Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -24,7 +24,7 @@
     <!-- Your stuff: Third-party CSS libraries go here -->
     
     <!-- This file stores project-specific CSS -->
-    
+    {% block css %}
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     
     
@@ -78,7 +78,7 @@
                 <h4 class="my-0 font-weight-normal">New Game</h4>
                 </div>
                 <div class="card-body d-flex flex-column">
-                <h3 class="card-title pricing-card-title">Be a leader in Horrible.</h3>
+                <h3 class="card-title pricing-card-title">Lead the horriblest.</h3>
                 <form action="" method="POST">
                 {% csrf_token %}
                 <input type="submit" class="btn btn-lg btn-block btn-dark align-self-end mt-auto" value="Create New">
@@ -98,7 +98,7 @@
                     
                       </div>
 
-                <input type="submit" class="btn btn-lg btn-block btn-light mt-auto" value="Join Horrible People">
+                <input type="submit" class="btn btn-lg bg-dark btn-block btn-light mt-auto" value="Join Horrible People">
             </form>
                 </div>
             </div>

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'game',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cah.wsgi.application'
 
+ASGI_APPLICATION = "game.routing.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [('redis', 6379)], # Use 'redis' if both the django application and redis are running in containers
+            
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

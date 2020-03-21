@@ -13,8 +13,12 @@ Cards Against Humanity:
 
 class Game(models.Model):
     '''
+    associated with the game
     '''
-    game = models.CharField(max_length=4)  #game will provide the unique id to the game
+    game = models.CharField(max_length=6)  #game will provide the unique id to the game
+
+    def __str__(self):
+        return self.game
 
 
 class Player(models.Model):
@@ -23,14 +27,31 @@ class Player(models.Model):
     A player has a set of cards
     '''
     name = models.CharField(max_length=32)
-    wins = models.IntegerField()
+    wins = models.IntegerField(blank=True,null=True)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
+
 class WhiteCard(models.Model):
     '''The White cards of the Game  '''
+    content = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.content
+
+
+class BlackCard(models.Model):
+    content = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.content
+
 
 class Turn(models.Model):
     ''' '''
-    decider = models.ForeignKey(Player, on_delete=models.CASCADE)
+    decider = models.ForeignKey(Player, related_name="picker" ,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.decider

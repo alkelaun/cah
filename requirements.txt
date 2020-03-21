@@ -12,6 +12,8 @@ django-allauth==0.41.0  # https://github.com/pennersr/django-allauth
 django-crispy-forms==1.8.1  # https://github.com/django-crispy-forms/django-crispy-forms
 django-redis==4.11.0  # https://github.com/niwinz/django-redis
 django-simple-history>=2.8
+channels>=2.4  # https://channels.readthedocs.io/en/latest/installation.html
+channels_redis >= 2.4 #https://pypi.org/project/channels-redis/
 
 # Allows 'dangerous' queries
 git+https://github.com/rob-deutsch/django-sql-explorer.git@django3 #https://github.com/groveco/django-sql-explorer

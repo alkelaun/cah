@@ -1,9 +1,124 @@
 {% extends 'game/base.html' %}
 
-{% block content %}
-  
-<small><em>GAME ROOM:</em></small> <br><b>{{id}}</b>
+{% block css%}
+<style>
+  /*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+body {
+  overflow-x: hidden;
+}
 
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+</style>
+
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+
+  <div class="bg-dark border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading text-white"><small><em>GAME ROOM:</em></small> <br><b>{{id}}</b></div>
+    <div class="list-group list-group-flush bg-dark text-white">
+      <div class="list-group-item list-group-item-action bg-dark text-danger">Players</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">Shortcuts</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">Overview</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">Events</div>
+      <input class="text-white bg-dark" id="chat-message-input" type="text" size="100" placeholder="Enter Name" required><br>
+      <input class="btn btn-sm btn-block btn-light" id="chat-message-submit" type="button" value="Join" >
+    </div>
+  </div>
+
+</div>
+
+<div class="bg-dark" id='main'>
+<textarea id="chat-log" cols="20" rows="2" class="text-white bg-dark"></textarea><br>
+
+</div>
+</div>
+</div>
+
+{{ id|json_script:"room-name" }}
+
+
+<script>
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/game/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        document.querySelector('#chat-log').value += (data.message + '\n');
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+        messageInputDom.value = '';
+    };
+</script>
 
 
 {% endblock %}
