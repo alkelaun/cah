@@ -10,17 +10,20 @@ def index(request):
 
 def register(request):
     ''' After joining a game, redirect to this page to enter a name'''
+    return render(request, "game/register.html")
 
-def game(request):
+def game(request, id):
     '''
     Displays:
     Players and score
     White Card
     Who's turn it is
     '''
+    return render(request, "game/game.html")
 
 def turn(request):
     '''Displays the deciders screen '''
+    return render(request, "game/turn.html")
 
 
 def white_card(request):
@@ -34,5 +37,6 @@ def players_hand(request):
     The white card currently being played
     And seven black cards
     '''
+    return render(request, "game/players_hand.html")
 
 

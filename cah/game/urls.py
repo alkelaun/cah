@@ -5,7 +5,7 @@ from .views import index, register, game, players_hand, turn
 urlpatterns = [
     path('', index, name="home"),
     path('register', register, name="register"),
-    path('game/<>', game, name="game"),
+    path('game/<id>', game, name="game"),
     path('hand', players_hand, name="hand"),
     path('turn', turn, name="turn"),
     path('about', index, name="about"),
