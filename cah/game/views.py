@@ -16,10 +16,10 @@ def game(request, id):
     '''
     Displays:
     Players and score
-    White Card
+    Black Card
     Who's turn it is
     '''
-    return render(request, "game/game.html")
+    return render(request, "game/game.html", {'id':id})
 
 def turn(request):
     '''Displays the deciders screen '''
@@ -34,8 +34,8 @@ def white_card(request):
 def players_hand(request):
     '''
     Displays the players hand
-    The white card currently being played
-    And seven black cards
+    Black card currently being played
+    Seven white cards
     '''
     return render(request, "game/players_hand.html")
 

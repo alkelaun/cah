@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}practice{% endblock title %}</title>
+    <title>{% block title %}CAH{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -39,7 +39,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">practice</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Cards Against Humanity</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -83,7 +83,44 @@
       {% endif %}
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+      <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Cards Against Humanity</h1>
+        <p class="lead">We are horrible people. Horrible.</p>
+      </div>
+      
+      <div class="container">
+
+        <div class="form-group card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                <h4 class="my-0 font-weight-normal">New Game</h4>
+                </div>
+                <div class="card-body">
+                <h1 class="card-title pricing-card-title">Be Horrible.</h1>
+
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Create New</button>
+                </div>
+            </div>
+            <div class="form-group card mb-4 shadow-sm">
+                <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Join Existing Game</h4>
+                </div>
+                <form>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <input type="string" style="text-align:center" class="form-control" id="gamecode" placeholder="Enter Game Code">
+                    
+                      </div>
+
+                <button type="button" class="btn btn-lg btn-block btn-primary">Join</button>
+            </form>
+                </div>
+            </div>
+
+        </div>  
+
+
       {% endblock content %}
 
     </div> 
@@ -104,7 +141,7 @@
       
 
     {% endblock javascript %}
--->
+
   </body>
 </html>
  
