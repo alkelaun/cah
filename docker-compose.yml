@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    stdin_open: true
+    tty: true
+    build: .
+    command: sh
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"

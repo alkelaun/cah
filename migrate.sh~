@@ -1,0 +1,4 @@
+#/bin/bash
+
+python docker/manage.py makemigrations && 
+python docker/manage.py migrate
