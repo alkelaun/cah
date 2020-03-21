@@ -49,25 +49,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
-            {% if request.user.is_authenticated %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
-              </li>
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-              </li>
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
-              </li>
-            {% endif %}
+            
           </ul>
         </div>
       </nav>
@@ -95,25 +77,28 @@
                 <div class="card-header">
                 <h4 class="my-0 font-weight-normal">New Game</h4>
                 </div>
-                <div class="card-body">
-                <h1 class="card-title pricing-card-title">Be Horrible.</h1>
-
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Create New</button>
-                </div>
+                <div class="card-body d-flex flex-column">
+                <h3 class="card-title pricing-card-title">Be a leader in Horrible.</h3>
+                <form action="" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-lg btn-block btn-dark align-self-end mt-auto" value="Create New">
+                </form>
             </div>
-            <div class="form-group card mb-4 shadow-sm">
+            </div>
+            <div class="form-group card mb-4 shadow-sm bg-dark" >
                 <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Join Existing Game</h4>
+                <h4 class="my-0 font-weight-normal text-light">Join Existing Game</h4>
                 </div>
-                <form>
-                <div class="card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                <div class="card-body d-flex flex-column">
 
                     <div class="form-group">
-                        <input type="string" style="text-align:center" class="form-control" id="gamecode" placeholder="Enter Game Code">
+                        <input type="text" style="text-align:center" class="form-control text-light bg-dark" name="gamecode" placeholder="Enter Game Code" required>
                     
                       </div>
 
-                <button type="button" class="btn btn-lg btn-block btn-primary">Join</button>
+                <input type="submit" class="btn btn-lg btn-block btn-light mt-auto" value="Join Horrible People">
             </form>
                 </div>
             </div>
