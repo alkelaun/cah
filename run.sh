@@ -1,4 +1,4 @@
 #/bin/bash
 
-python docker/manage.py runserver 0.0.0.0:8000
+python cah/manage.py runserver 0.0.0.0:8000
 
