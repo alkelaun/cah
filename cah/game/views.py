@@ -44,12 +44,12 @@ def white_card(request):
     Displays the white card
     '''
 
-def players_hand(request):
+def players_hand(request, id, name):
     '''
     Displays the players hand
     Black card currently being played
     Seven white cards
     '''
-    return render(request, "game/players_hand.html")
+    return render(request, "game/players_hand.html", {'id':id})
 
 

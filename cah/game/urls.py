@@ -6,7 +6,7 @@ urlpatterns = [
     path('', index, name="home"),
     path('register', register, name="register"),
     path('game/<id>', game, name="gameroom"),  #game board
-    path('hand', players_hand, name="hand"), #on phone
+    path('game/<id>/<name>', players_hand, name="hand"), #on phone
     path('turn', turn, name="turn"),
 
     path('about', index, name="about"),
