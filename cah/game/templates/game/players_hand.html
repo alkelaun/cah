@@ -6,4 +6,9 @@
         <p class="lead">Game: {{ id }}</p>
 </div>
 
+{% for card in cards %}
+<div class="text-left"> {{card}} </div>
+
+{% endfor %}
+<button onClick="window.location.reload();">More Random Cards</button>
 {% endblock %}

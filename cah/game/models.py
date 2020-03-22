@@ -27,7 +27,7 @@ class Player(models.Model):
     A player has a set of cards
     '''
     name = models.CharField(max_length=32)
-    wins = models.IntegerField(blank=True,null=True)
+    wins = models.IntegerField(blank=True, null=True)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
     def __str__(self):

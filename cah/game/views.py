@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from .models import WhiteCard
 import random, string
 
 # Create your views here.
@@ -35,7 +35,10 @@ def game(request, id):
     return render(request, "game/game.html", {'id':id})
 
 def turn(request):
-    '''Displays the deciders screen '''
+    '''
+    Displays the deciders screen 
+    Should be the black card, and the cards people choose to submit
+    '''
     return render(request, "game/turn.html")
 
 
@@ -50,6 +53,7 @@ def players_hand(request, id, name):
     Black card currently being played
     Seven white cards
     '''
-    return render(request, "game/players_hand.html", {'id':id})
+    card = WhiteCard.objects.order_by('?')[:10]
+    return render(request, "game/players_hand.html", {'id':id, 'cards':card})
 
 
